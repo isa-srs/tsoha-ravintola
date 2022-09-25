@@ -2,7 +2,7 @@
 
 ## Sovelluksen käyttö
 
-Sovellus on käytettävissä Herokussa. 
+Sovellus on käytettävissä (Herokussa)[https://tsoha-ravintola.herokuapp.com/]. 
 
 ## Sovelluksen nykyiset ominaisuudet
 
