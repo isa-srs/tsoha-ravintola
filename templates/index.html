@@ -2,7 +2,13 @@
 
 <h1>Ravintolasovellus</h1>
 
-<p>Tervetuloa sovellukseen!</p>
+{% if session.username %}
+<p>Olet kirjautunut nimellä {{ session.username }}.</p>
+<a href="/">Kirjaudu ulos</a>
+{% else %}
+<p>Et ole kirjautunut sisään.</p>
+<p>
 <a href="/login">Kirjaudu sisään</a>
-<br>
+<p>
 <a href="/register">Luo käyttäjä</a>
+{% endif %}
