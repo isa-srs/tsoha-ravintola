@@ -2,11 +2,11 @@
 
 <h1>Ravintolasovellus</h1>
 
-{% if session.username %}
-<p>Olet kirjautunut nimellä {{ session.username }}.</p>
-<a href="/">Kirjaudu ulos</a>
+{% if session.user_id %}
+Olet kirjautunut nimellä {{ session.username }}.
+<a href="/logout">Kirjaudu ulos</a>
 {% else %}
-<p>Et ole kirjautunut sisään.</p>
+Et ole kirjautunut sisään.
 <p>
 <a href="/login">Kirjaudu sisään</a>
 <p>
