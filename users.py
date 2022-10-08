@@ -7,7 +7,6 @@ def login(username, password):
     sql = "SELECT id, username, password, role FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
-    print(user)
     if not user:
         return False
     if not check_password_hash(user[2], password):
