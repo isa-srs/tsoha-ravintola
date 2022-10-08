@@ -52,30 +52,24 @@ def add():
         return render_template("add.html")
     
     if request.method == "POST":
+        owner_id = session["user_id"]
         name = request.form["name"]
         if restaurants.check(name):
             return render_template("error.html", message=f"{name} on jo olemassa.")
-        
-        descr = request.form["descr"]
-        if not restaurants.add(name, descr):
-            return render_template("error.html", message="Ravintolan lisääminen epäonnistui.")
+        restaurants.add_restaurant(owner_id, name)
         return redirect("/")
 
 @app.route("/restaurant/<int:id>", methods=["get", "post"])
 def get_restaurant_page(id):
     if request.method == "GET":
         info = restaurants.get_restaurant_info(id)
-        return render_template("restaurant.html", res_id=id, res_name=info[0], desc=info[1], reviews=reviews.get_all_reviews())
+        return render_template("restaurant.html", res_id=id, res_name=info[0], reviews=reviews.get_all_reviews())
 
     if request.method == "POST":
         user_id = session["user_id"]
         stars = int(request.form["stars"])
         comment = request.form["comment"]
-        print(user_id)
-        print(stars)
-        print(comment)
-        if not reviews.new_review(user_id, stars, comment):
-            print("new review virhe")
+        reviews.new_review(user_id, stars, comment)
         
         info = restaurants.get_restaurant_info(id)
-        return render_template("restaurant.html", res_id=id, res_name=info[0], desc=info[1], reviews=reviews.get_all_reviews())
+        return render_template("restaurant.html", res_id=id, res_name=info[0], reviews=reviews.get_all_reviews())

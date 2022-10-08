@@ -1,5 +1,4 @@
 <h1>{{ res_name }}</h1>
-{{ desc }}
 <p>
 
 {% if session.user_id %}
@@ -12,6 +11,7 @@
         <option value="4"> 4 tähteä
         <option value="5" selected> 5 tähteä
         </select>
+    <p>
     Kommentti: <br><textarea name="comment" rows="6" cols="40"></textarea><br>
     <input type="submit" value="Lähetä">
 </form>

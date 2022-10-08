@@ -8,8 +8,7 @@ CREATE TABLE users (
 CREATE TABLE restaurants (
     id SERIAL PRIMARY KEY,
     owner_id INTEGER REFERENCES users,
-    name TEXT,
-    descr TEXT
+    name TEXT
 );
 
 CREATE TABLE schedules (

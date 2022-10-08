@@ -1,8 +1,12 @@
 from db import db
 
 def get_all_restaurants():
-    sql = "SELECT id, name, descr FROM restaurants ORDER BY name"
+    sql = "SELECT id, name FROM restaurants ORDER BY name"
     return db.session.execute(sql).fetchall()
+
+def get_restaurant_info(id):
+    sql = "SELECT name FROM restaurants WHERE id<=:id"
+    return db.session.execute(sql, {"id":id}).fetchone()
 
 def check(name):
     # True jos name-niminen ravintola on jo olemassa
@@ -11,17 +15,11 @@ def check(name):
     rest = result.fetchone()
     if not rest:
         return False
-    return True
 
-def add(name, descr):
+def add_restaurant(owner_id, name):
     try:
-        sql = "INSERT INTO restaurants (name, descr) VALUES (:name, :descr)"
-        db.session.execute(sql, {"name":name, "descr":descr})
+        sql = "INSERT INTO restaurants (owner_id, name) VALUES (:owner_id, :name)"
+        db.session.execute(sql, {"owner_id":owner_id, "name":name})
         db.session.commit()
     except:
         return False
-    return True
-
-def get_restaurant_info(id):
-    sql = "SELECT name, descr FROM restaurants WHERE id=:id"
-    return db.session.execute(sql, {"id":id}).fetchone()

@@ -1,7 +1,7 @@
 from db import db
 
 def get_all_reviews():
-    sql = "SELECT u.username, r.stars, r.comment FROM users u, reviews r WHERE u.id = r.user_id ORDER BY r.id DESC"
+    sql = "SELECT u.username, r.stars, r.comment FROM users as u, reviews as r WHERE u.id = r.user_id ORDER BY r.id DESC"
     return db.session.execute(sql).fetchall()
 
 def new_review(user_id, stars, comment):
