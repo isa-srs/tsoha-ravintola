@@ -1,5 +1,10 @@
-<Title>Rekisteröidy | Ravintolasovellus</Title>
+{% extends "layout.html" %}
+{% block title %}Rekisteröidy{% endblock %}
 
+{% block content %}
+
+<h1>Rekisteröidy</h1>
+<p>
 <form action="/register" method="POST">
     Käyttäjänimi: <br><input type="text" name="username" size="20">
     <p>
@@ -11,3 +16,5 @@
     <p>
     <input type="submit" value="Luo käyttäjä">
 </form>
+
+{% endblock %}

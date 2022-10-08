@@ -1,5 +1,10 @@
-<h2>Lisää uusi ravintola</h2>
+{% extends "layout.html" %}
+{% block title %}Lisää uusi ravintola{% endblock %}
 
+{% block content %}
+
+<h1>Lisää uusi ravintola</h1>
+<p>
 <form action="/add_restaurant", method="POST">
     Ravintolan nimi: <input type="text" name="name" size="30">
     <br>
@@ -7,3 +12,5 @@
     <br>
     <input type="submit" value="Lisää ravintola">
 </form>
+
+{% endblock %}

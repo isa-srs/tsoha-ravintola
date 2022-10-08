@@ -1,10 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}{{ res_name }}{% endblock %}
+
+{% block content %}
+
 <h1>{{ res_name }}</h1>
 <p>
 
 {% if session.user_id %}
 <h2>Jätä arvostelu:</h2>
+<p>
 <form action="/restaurant/{{ res_id }}", method="POST"> 
-    Arvio: <select name="stars">
+    Arvio: <br><select name="stars">
         <option value="1"> 1 tähti
         <option value="2"> 2 tähteä
         <option value="3"> 3 tähteä
@@ -15,6 +21,7 @@
     Kommentti: <br><textarea name="comment" rows="6" cols="40"></textarea><br>
     <input type="submit" value="Lähetä">
 </form>
+
 {% else %}
 <a href="/login">Kirjaudu sisään</a> jättääksesi arvostelu.
 {% endif %}
@@ -24,6 +31,8 @@
 <li>Arvostelu käyttäjältä {{ review.username }}
 {{ review.stars }}/5 tähteä
 {{ review.comment }}
-<br>
+<p>
 {% endfor %}
 </ul>
+
+{% endblock %}

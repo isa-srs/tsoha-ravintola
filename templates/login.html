@@ -1,5 +1,10 @@
-<Title>Kirjaudu | Ravintolasovellus</Title>
+{% extends "layout.html" %}
+{% block title %}Kirjaudu{% endblock %}
 
+{% block content %}
+
+<h1>Kirjaudu sisään</h1>
+<p>
 <form action="/login" method="POST">
     Käyttäjänimi: <br><input type="text" name="username" size="20">
     <p>
@@ -7,3 +12,9 @@
     <p>
     <input type="submit" value="Kirjaudu">
 </form>
+
+<p>
+
+Ei tunnuksia? <a href="/register">Rekisteröidy</a>
+
+{% endblock %}

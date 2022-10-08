@@ -1,16 +1,22 @@
-<title>Etusivu | Ravintolasovellus</title>
+{% extends "layout.html" %}
+{% block title %}Etusivu{% endblock %}
+
+{% block content %}
 
 <h1>Ravintolasovellus</h1>
+
+<p>
 
 {% if session.user_id %}
 Olet kirjautunut nimellä {{ session.username }}.
 <a href="/logout">Kirjaudu ulos</a>
 {% else %}
-Et ole kirjautunut sisään.
-<p>
+Et ole kirjautunut sisään.<br>
 <a href="/login">Kirjaudu sisään</a>
 <a href="/register">Luo käyttäjä</a>
 {% endif %}
+
+<p>
 
 {% if session.userrole == 2 %}
 <a href="/add_restaurant">Lisää ravintola</a>
@@ -25,3 +31,5 @@ Et ole kirjautunut sisään.
 <li><a href="/restaurant/{{ restaurant.id }}">{{ restaurant.name }}</a>
 {% endfor %}
 </ul>
+
+{% endblock %}
