@@ -1,0 +1,30 @@
+<h1>{{ res_name }}</h1>
+{{ desc }}
+<p>
+
+{% if session.user_id %}
+<h2>Jätä arvostelu:</h2>
+<form action="/restaurant/{{ res_id }}", method="POST">
+    Otsikko: <input type="text" name="title" size="30"> 
+    Arvio: <select name="stars">
+        <option value="1"> 1 tähti
+        <option value="2"> 2 tähteä
+        <option value="3"> 3 tähteä
+        <option value="4"> 4 tähteä
+        <option value="5" selected> 5 tähteä
+        </select>
+    Kommentti: <br><textarea name="comment" rows="6" cols="40"></textarea><br>
+    <input type="submit" value="Lähetä">
+</form>
+{% else %}
+<a href="/login">Kirjaudu sisään</a> jättääksesi arvostelu.
+{% endif %}
+
+<ul>
+{% for review in reviews %}
+<li>{{ review.title }} käyttäjältä {{ review.username }}
+{{ review.stars }}/5 tähteä
+{{ review.comment }}
+<br>
+{% endfor %}
+</ul>

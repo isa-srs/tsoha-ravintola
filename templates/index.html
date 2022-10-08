@@ -9,6 +9,19 @@ Olet kirjautunut nimellä {{ session.username }}.
 Et ole kirjautunut sisään.
 <p>
 <a href="/login">Kirjaudu sisään</a>
-<p>
 <a href="/register">Luo käyttäjä</a>
 {% endif %}
+
+{% if session.userrole == 2 %}
+<a href="/add_restaurant">Lisää ravintola</a>
+{% endif %}
+
+<p>
+
+<h2>Ravintolat:</h2>
+
+<ul>
+{% for restaurant in restaurants %}
+<li><a href="/restaurant/{{ restaurant.id }}">{{ restaurant.name }}</a>
+{% endfor %}
+</ul>

@@ -1,10 +1,13 @@
+from webbrowser import get
 from app import app
 from flask import render_template, request, redirect, session
 import users
+import restaurants
+import reviews
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", restaurants=restaurants.get_all_restaurants())
 
 @app.route("/login", methods=["get", "post"])
 def login():
@@ -42,3 +45,34 @@ def register():
         if not users.register(username, password, role):
             return render_template("error.html", message="Rekisteröinti epäonnistui.")
         return redirect("/")
+
+@app.route("/add_restaurant", methods=["get", "post"])
+def add():
+    if request.method == "GET":
+        return render_template("add.html")
+    
+    if request.method == "POST":
+        name = request.form["name"]
+        if restaurants.check(name):
+            return render_template("error.html", message=f"{name} on jo olemassa.")
+        
+        descr = request.form["descr"]
+        if not restaurants.add(name, descr):
+            return render_template("error.html", message="Ravintolan lisääminen epäonnistui.")
+        return redirect("/")
+
+@app.route("/restaurant/<int:id>", methods=["get", "post"])
+def get_restaurant_page(id):
+    if request.method == "GET":
+        info = restaurants.get_restaurant_info(id)
+        return render_template("restaurant.html", res_id=id, res_name=info[0], desc=info[1], reviews=reviews.get_all_reviews())
+
+    if request.method == "POST":
+        username = session["username"]
+        title = request.form["title"]
+        stars = request.form["stars"]
+        comment = request.form["comment"]
+        reviews.new_review(username, title, stars, comment)
+        
+        info = restaurants.get_restaurant_info(id)
+        return render_template("restaurant.html", res_id=id, res_name=info[0], desc=info[1], reviews=reviews.get_all_reviews())
