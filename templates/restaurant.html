@@ -4,8 +4,7 @@
 
 {% if session.user_id %}
 <h2>Jätä arvostelu:</h2>
-<form action="/restaurant/{{ res_id }}", method="POST">
-    Otsikko: <input type="text" name="title" size="30"> 
+<form action="/restaurant/{{ res_id }}", method="POST"> 
     Arvio: <select name="stars">
         <option value="1"> 1 tähti
         <option value="2"> 2 tähteä
@@ -22,7 +21,7 @@
 
 <ul>
 {% for review in reviews %}
-<li>{{ review.title }} käyttäjältä {{ review.username }}
+<li>Arvostelu käyttäjältä {{ review.username }}
 {{ review.stars }}/5 tähteä
 {{ review.comment }}
 <br>

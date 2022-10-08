@@ -1,13 +1,13 @@
 from db import db
 
 def get_all_reviews():
-    sql = "SELECT username, title, stars, comment FROM reviews ORDER BY id DESC"
+    sql = "SELECT u.username, r.stars, r.comment FROM users u, reviews r WHERE u.id = r.user_id ORDER BY r.id DESC"
     return db.session.execute(sql).fetchall()
 
-def new_review(username, title, stars, comment):
+def new_review(user_id, stars, comment):
     try:
-        sql = "INSERT INTO reviews (username, title, stars, comment) VALUES (:username, :title, :stars, :comment)"
-        db.session.execute(sql, {"username":username, "title":title, "stars":stars, "comment":comment})
+        sql = "INSERT INTO reviews (user_id, stars, comment) VALUES (:user_id, :stars, :comment)"
+        db.session.execute(sql, {"user_id":user_id, "stars":stars, "comment":comment})
         db.session.commit()
     except:
         return False

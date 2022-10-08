@@ -68,11 +68,14 @@ def get_restaurant_page(id):
         return render_template("restaurant.html", res_id=id, res_name=info[0], desc=info[1], reviews=reviews.get_all_reviews())
 
     if request.method == "POST":
-        username = session["username"]
-        title = request.form["title"]
-        stars = request.form["stars"]
+        user_id = session["user_id"]
+        stars = int(request.form["stars"])
         comment = request.form["comment"]
-        reviews.new_review(username, title, stars, comment)
+        print(user_id)
+        print(stars)
+        print(comment)
+        if not reviews.new_review(user_id, stars, comment):
+            print("new review virhe")
         
         info = restaurants.get_restaurant_info(id)
         return render_template("restaurant.html", res_id=id, res_name=info[0], desc=info[1], reviews=reviews.get_all_reviews())
