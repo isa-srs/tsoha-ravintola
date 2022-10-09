@@ -4,6 +4,7 @@
 {% block content %}
 
 <h1>{{ res_name }}</h1>
+{{ res_cuisine }}
 <p>
 
 {% if session.user_id %}
@@ -28,10 +29,14 @@
 
 <ul>
 {% for review in reviews %}
-<li>Arvostelu käyttäjältä {{ review.username }}
-{{ review.stars }}/5 tähteä
+<li>Arvostelu käyttäjältä {{ review.username }}<br>
+{{ review.stars }}/5 tähteä<br>
 {{ review.comment }}
+
+{% if session.user_id == review.id %}
+# TODO: Käyttäjä voi poistaa oman arvostelun.
 <p>
+{% endif %}
 {% endfor %}
 </ul>
 
