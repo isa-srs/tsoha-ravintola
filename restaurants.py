@@ -16,10 +16,10 @@ def check(name):
     if not rest:
         return False
 
-def add_restaurant(owner_id, name):
+def add_restaurant(owner_id, name, cuisine):
     try:
-        sql = "INSERT INTO restaurants (owner_id, name) VALUES (:owner_id, :name)"
-        db.session.execute(sql, {"owner_id":owner_id, "name":name})
+        sql = "INSERT INTO restaurants (owner_id, name, cuisine) VALUES (:owner_id, :name, :cuisine)"
+        db.session.execute(sql, {"owner_id":owner_id, "name":name, "cuisine":cuisine})
         db.session.commit()
     except:
         return False

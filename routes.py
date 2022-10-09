@@ -56,7 +56,8 @@ def add():
         name = request.form["name"]
         if restaurants.check(name):
             return render_template("error.html", message=f"{name} on jo olemassa.")
-        restaurants.add_restaurant(owner_id, name)
+        cuisine = request.form["cuisine"]
+        restaurants.add_restaurant(owner_id, name, cuisine)
         return redirect("/")
 
 @app.route("/restaurant/<int:id>", methods=["get", "post"])

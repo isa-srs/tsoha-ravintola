@@ -8,7 +8,8 @@ CREATE TABLE users (
 CREATE TABLE restaurants (
     id SERIAL PRIMARY KEY,
     owner_id INTEGER REFERENCES users,
-    name TEXT
+    name TEXT,
+    cuisine TEXT
 );
 
 CREATE TABLE schedules (
@@ -24,12 +25,6 @@ CREATE TABLE reviews (
     stars INTEGER,
     comment TEXT,
     posted_at TIMESTAMP DEFAULT Now()
-);
-
-CREATE TABLE cuisines (
-    id SERIAL PRIMARY KEY,
-    name TEXT,
-    restaurant_id INTEGER REFERENCES restaurants
 );
 
 CREATE TABLE favourites (
