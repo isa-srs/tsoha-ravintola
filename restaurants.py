@@ -5,7 +5,7 @@ def get_all_restaurants():
     return db.session.execute(sql).fetchall()
 
 def get_restaurant_info(id):
-    sql = "SELECT name FROM restaurants WHERE id<=:id"
+    sql = "SELECT name, cuisine FROM restaurants WHERE id<=:id"
     return db.session.execute(sql, {"id":id}).fetchone()
 
 def check(name):

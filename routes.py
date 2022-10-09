@@ -64,7 +64,7 @@ def add():
 def get_restaurant_page(id):
     if request.method == "GET":
         info = restaurants.get_restaurant_info(id)
-        return render_template("restaurant.html", res_id=id, res_name=info[0], reviews=reviews.get_all_reviews())
+        return render_template("restaurant.html", res_id=id, res_name=info[0], res_cuisine=info[1], reviews=reviews.get_all_reviews())
 
     if request.method == "POST":
         user_id = session["user_id"]
@@ -73,4 +73,4 @@ def get_restaurant_page(id):
         reviews.new_review(user_id, stars, comment)
         
         info = restaurants.get_restaurant_info(id)
-        return render_template("restaurant.html", res_id=id, res_name=info[0], reviews=reviews.get_all_reviews())
+        return render_template("restaurant.html", res_id=id, res_name=info[0], res_cuisine=info[1], reviews=reviews.get_all_reviews())
