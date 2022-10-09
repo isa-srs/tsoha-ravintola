@@ -15,11 +15,10 @@ Sovellus on käytettävissä [Herokussa](https://tsoha-ravintola.herokuapp.com/)
 - Käyttäjä voi jättää ravintoloille arvosteluja (1-5 tähteä ja kommentti).
 - Ravintoloitsija voi lisätä sovellukseen uusia ravintoloita.
 
-## Suunnitellut ominaisuudet
+## Loput suunnitellut ominaisuudet
 
 - Käyttäjä voi hakea tiettyä ravintolaa listalta.
 - Käyttäjä voi valita, missä järjestyksessä ravintolat näkyvät listalla (aakkosjärjestys, arvioiden mukaan parhaimmasta huonoimpaan).
 - Käyttäjä voi halutessaan merkitä suosikkiravintoloitaan "tähdellisiksi". Tämä ei näy muille käyttäjille.
+- Käyttäjä voi poistaa itse antamiaan arvosteluja.
 - Ravintoloitsija voi poistaa itse lisäämiään ravintoloita.
-- Ravintoloitsija voi poistaa käyttäjien antamia arvioita.
-- Ravintoloitsija voi luoda ryhmiä, joihin ravintoloita voi luokitella. Ravintola voi kuulua yhteen tai useampaan ryhmään.
