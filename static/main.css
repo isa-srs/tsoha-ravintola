@@ -1,0 +1,43 @@
+body {
+    margin: auto;
+    max-width: 70em;
+    font-family: 'Arial', 'Helvetica', 'sans-serif';
+    background-color: #f0fff1;
+}
+
+button {
+    padding: 6px;
+    border: 1px;
+    margin: 10px;
+    font-size: 16px
+}
+
+p {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #333333;
+}
+
+a {
+    font-size: 16px;
+    color: #333333;
+}
+
+h1, h2 {
+    margin-left: 10px;
+    color: #333333;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #d0f5d3;
+}
+
+.title {
+    margin-right: auto;
+    margin-left: 10px;
+    font-size: 36px;
+}
+

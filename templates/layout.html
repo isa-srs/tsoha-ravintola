@@ -1,7 +1,21 @@
 <!doctype html>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Ravintolasovellus | {% block title %}{% endblock %}</title>
-<a href="/">Etusivu</a>
-<hr>
-{% block content %}{% endblock %}
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/main.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Ravintolasovellus | {% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1 class="title">Ravintolasovellus</h1>
+            {% if session.user_id %}
+            <p>Olet kirjautunut nimellä {{ session.username }}.</p><br>
+            <button><a href="/logout">Kirjaudu ulos</a></button>
+            {% else %}
+            <button><a href="/login">Kirjaudu sisään</a></button><br>
+            <button><a href="/register">Luo käyttäjä</a></button>
+            {% endif %}
+        </div>
+        {% block content %}{% endblock %}
+    </body>
+</html>

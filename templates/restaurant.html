@@ -3,15 +3,17 @@
 
 {% block content %}
 
-<h1>{{ res_name }}</h1>
-{{ res_cuisine }}
+<h2>{{ res_name }}</h2>
+<p>{{ res_cuisine }}<p>
+    
+<p>
 <p>
 
 {% if session.user_id %}
 <h2>Jätä arvostelu:</h2>
 <p>
 <form action="/restaurant/{{ res_id }}", method="POST"> 
-    Arvio: <br><select name="stars">
+    <p>Arvio: <br><select name="stars"></p>
         <option value="1"> 1 tähti
         <option value="2"> 2 tähteä
         <option value="3"> 3 tähteä

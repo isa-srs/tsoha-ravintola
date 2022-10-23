@@ -3,28 +3,13 @@
 
 {% block content %}
 
-<h1>Ravintolasovellus</h1>
-
-<p>
-
-{% if session.user_id %}
-Olet kirjautunut nimellä {{ session.username }}.
-<a href="/logout">Kirjaudu ulos</a>
-{% else %}
-Et ole kirjautunut sisään.<br>
-<a href="/login">Kirjaudu sisään</a>
-<a href="/register">Luo käyttäjä</a>
-{% endif %}
-
-<p>
-
-{% if session.userrole == 2 %}
-<a href="/add_restaurant">Lisää ravintola</a>
-{% endif %}
-
 <p>
 
 <h2>Ravintolat:</h2>
+
+{% if session.userrole == 2 %}
+<button><a href="/add_restaurant">Lisää ravintola</a></button>
+{% endif %}
 
 <ul>
 {% for restaurant in restaurants %}
