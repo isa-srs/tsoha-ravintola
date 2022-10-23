@@ -65,13 +65,22 @@ def add():
 def get_restaurant_page(id):
     if request.method == "GET":
         info = restaurants.get_restaurant_info(id)
-        return render_template("restaurant.html", res_id=id, res_name=info[0], res_cuisine=info[1], reviews=reviews.get_all_reviews())
+        restaurant_id = id
+        return render_template("restaurant.html", res_id=id, res_name=info[0], res_cuisine=info[1], res_owner=info[2], reviews=reviews.get_all_reviews(restaurant_id))
 
     if request.method == "POST":
         user_id = session["user_id"]
+        restaurant_id = id
         stars = int(request.form["stars"])
         comment = request.form["comment"]
-        reviews.new_review(user_id, stars, comment)
+        reviews.new_review(user_id, id, stars, comment)
         
         info = restaurants.get_restaurant_info(id)
-        return render_template("restaurant.html", res_id=id, res_name=info[0], res_cuisine=info[1], reviews=reviews.get_all_reviews())
+        return render_template("restaurant.html", res_id=id, res_name=info[0], res_cuisine=info[1], res_owner=info[2], reviews=reviews.get_all_reviews(restaurant_id))
+
+@app.route("/restaurant/<int:id>/<int:review_id>/delete", methods=["get"])
+def delete_review(id, review_id):
+    if request.method == "GET":
+        reviews.delete_review(review_id)
+        return redirect(f"/restaurant/{id}")
+

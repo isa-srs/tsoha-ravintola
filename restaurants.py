@@ -5,7 +5,7 @@ def get_all_restaurants():
     return db.session.execute(sql).fetchall()
 
 def get_restaurant_info(id):
-    sql = "SELECT name, cuisine FROM restaurants WHERE id=:id"
+    sql = "SELECT name, cuisine, owner_id FROM restaurants WHERE id=:id"
     return db.session.execute(sql, {"id":id}).fetchone()
 
 def check(name):
@@ -23,3 +23,9 @@ def add_restaurant(owner_id, name, cuisine):
         db.session.commit()
     except:
         return False
+
+def delete_restaurant(id):
+    sql = "DELETE from restaurants WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+
