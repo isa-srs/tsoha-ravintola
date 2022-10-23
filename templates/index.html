@@ -11,10 +11,12 @@
 <button><a href="/add_restaurant">Lisää ravintola</a></button>
 {% endif %}
 
-<ul>
+<p>
+
 {% for restaurant in restaurants %}
-<li><a href="/restaurant/{{ restaurant.id }}">{{ restaurant.name }}</a>
+<a href="/restaurant/{{ restaurant.id }}">{{ restaurant.name }}</a>
+<p>
 {% endfor %}
-</ul>
+
 
 {% endblock %}

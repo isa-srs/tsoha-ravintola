@@ -3,6 +3,8 @@
 
 {% block content %}
 
+<button><a href="/">Palaa etusivulle</a></button>
+
 <h2>{{ res_name }}</h2>
 <p>{{ res_cuisine }}<p>
     
@@ -29,17 +31,24 @@
 <a href="/login">Kirjaudu sisään</a> jättääksesi arvostelu.
 {% endif %}
 
-<ul>
-{% for review in reviews %}
-<li>Arvostelu käyttäjältä {{ review.username }}<br>
-{{ review.stars }}/5 tähteä<br>
-{{ review.comment }}
+<p>
 
-{% if session.user_id == review.id %}
-# TODO: Käyttäjä voi poistaa oman arvostelun.
+<h2>Arvostelut:</h2>
+
+<p>
+
+{% for review in reviews %}
+<h3>Arvostelu käyttäjältä {{ review.username }}</h3>
+<p>
+<p>{{ review.stars }}/5 tähteä</p>
+<p>{{ review.comment }}</p>
+
+{% if session.user_id == review.user_id %}
+<button><a href="/restaurant/{{ res_id }}/{{ review.review_id }}/delete">Poista</a></button>
 <p>
 {% endif %}
+
 {% endfor %}
-</ul>
+
 
 {% endblock %}
