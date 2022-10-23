@@ -1,4 +1,3 @@
-from webbrowser import get
 from app import app
 from flask import render_template, request, redirect, session
 import users
@@ -36,6 +35,8 @@ def register():
         username = request.form["username"]
         if len(username) < 4 or len(username) > 15:
             return render_template("error.html", message="Käyttäjänimen tulee olla 4-15 merkkiä pitkä.")
+        if not users.check_user(username):
+            return render_template("error.html", message="Käyttäjänimi on varattu.")
         
         password = request.form["password"]
         if len(password) < 6:
