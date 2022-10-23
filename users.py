@@ -23,6 +23,7 @@ def check_user(username):
     user = result.fetchone()
     if user:
         return False
+    return True
 
 def logout():
     del session["user_id"]

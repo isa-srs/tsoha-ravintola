@@ -12,19 +12,12 @@ CREATE TABLE restaurants (
     cuisine TEXT
 );
 
-CREATE TABLE schedules (
-    id SERIAL PRIMARY KEY,
-    restaurant_id INTEGER REFERENCES restaurants,
-    opens_at TEXT,
-    closes_at TEXT
-);
-
 CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users,
+    restaurant_id INTEGER REFERENCES restaurants,
     stars INTEGER,
-    comment TEXT,
-    posted_at TIMESTAMP DEFAULT Now()
+    comment TEXT
 );
 
 CREATE TABLE favourites (
